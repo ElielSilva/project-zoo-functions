@@ -1,8 +1,6 @@
 const { employees } = require('../data/zoo_data');
 const data = require('../data/zoo_data');
 
-// console.log(data.employees);
-
 function getEmployeeByName(employeeName) {
   if (!employeeName) {
     return {};
