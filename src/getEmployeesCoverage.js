@@ -4,10 +4,6 @@ function seachIdAnimal(params) {
   return data.species.filter((x, index) => params.find((y) => y === x.id));
 }
 
-// const erroPush = () => {
-//   if () {
-//     throw new Error('Informações inválidas');
-// }
 const padrao = data.employees.reduce((acc, curr) => {
   acc.push({ id: curr.id,
     fullName: `${curr.firstName} ${curr.lastName}`,
@@ -16,15 +12,20 @@ const padrao = data.employees.reduce((acc, curr) => {
   return acc;
 }, []);
 
-function getEmployeesCoverage(entrits) {
-  if (!entrits) {
-    return padrao;
-  } if (Object.keys(entrits).includes('name')) {
-    return padrao.find((item) => item.fullName.split(' ').includes(entrits.name));
-  } if (Object.keys(entrits).includes('id')) {
-    return padrao.find((item) => item.id === entrits.id);
+function getEmployeesCoverage(entrets) {
+  if (!entrets) return padrao;
+  if (entrets.name) {
+    const { name } = entrets;
+    return padrao.find((item) => item.fullName.split(' ').includes(name));
+  }
+  if (entrets.id) {
+    const { id } = entrets;
+    if (id !== 'Id inválido') {
+      return padrao.find((item) => item.id === id);
+    }
+    throw Error('Informações inválidas');
   }
 }
-// console.log(getEmployeesCoverage())
+console.log(getEmployeesCoverage({ id: 'Stephanie' }));
 
 module.exports = getEmployeesCoverage;
