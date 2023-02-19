@@ -1,45 +1,42 @@
 const data = require('../data/zoo_data');
 
-// const filtro = (...entratsOp) => ({
-//   NE: data.species.filter((item) => item.location === 'NE')
-//     .reduce((acc, curr) => { acc.push(curr.name); return acc; }, []),
-//   NW: data.species.filter((item) => item.location === 'NW')
-//     .reduce((acc, curr) => { acc.push(curr.name); return acc; }, []),
-//   SE: data.species.filter((item) => item.location === 'SE')
-//     .reduce((acc, curr) => { acc.push(curr.name); return acc; }, []),
-//   SW: data.species.filter((item) => item.location === 'SW')
-//     .reduce((acc, curr) => { acc.push(curr.name); return acc; }, []),
-// });
+const initialValue = { NE: [], NW: [], SE: [], SW: [] };
 
-// const filtroNames = () => ({
-//   NE: [data.species.filter((item) => item.location === 'NE')
-//     .reduce((acc, curr) => { acc[curr.name] = curr.residents
-//     .reduce((acc1, curr1) => { acc1.push(curr1.name); return acc1; }, []); return acc;
-//     }, {})],
-//   NW: [data.species.filter((item) => item.location === 'NW')
-//     .reduce((acc, curr) => { acc[curr.name] = curr.residents
-//     .reduce((acc1, curr1) => { acc1.push(curr1.name); return acc1; }, []); return acc;
-//     }, {})],
-//   SE: [data.species.filter((item) => item.location === 'SE')
-//     .reduce((acc, curr) => { acc[curr.name] = curr.residents
-//     .reduce((acc1, curr1) => { acc1.push(curr1.name); return acc1; }, []); return acc;
-//     }, {})],
-//   SW: [data.species.filter((item) => item.location === 'SW')
-//     .reduce((acc, curr) => { acc[curr.name] = curr.residents
-//     .reduce((acc1, curr1) => { acc1.push(curr1.name); return acc1; }, []); return acc;
-//     }, {})],
-// });
+const filterForLocation = () =>
+  data.species.reduce((acc, curr) => {
+    if (acc[curr.location].includes(curr.name)) {
+      return acc;
+    }
+    acc[curr.location].push(curr.name);
+    return acc;
+  }, initialValue);
+
+const filtroNamesSexSorted = (params) =>
+  data.species.reduce((acc, curr) => {
+    const names = curr.residents
+      .filter((sp) => {
+        if (params.sex) return sp.sex === params.sex;
+        return true;
+      })
+      .map((sp) => sp.name);
+    if (params.sorted) {
+      names.sort();
+    }
+    const specie = {};
+    specie[curr.name] = names;
+
+    acc[curr.location].push(specie);
+    return acc;
+  }, initialValue);
 
 function getAnimalMap(options) {
-  // if (!options) {
-  //   return filtro();
-  // }
-  // if (Object.values(options).some((item) => item === 'female')) {
-  //   return filtro();
-  // }
-  // if (options.includesNames === true) {
-  //   return filtroNames();
-  // }
+  if (!options || !('includeNames' in options)) {
+    return filterForLocation();
+  }
+  if ('sex' in options && 'sorted' in options) {
+    return filtroNamesSexSorted(options);
+  }
+  return filtroNamesSexSorted(options);
 }
 
 module.exports = getAnimalMap;
