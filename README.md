@@ -1,13 +1,63 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# Projeto Zoologico de Funções
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+## baixar para sua maquina
+
+### baixar via ssh
+execute esse comando no seu terminal:
+```sh
+$ git clone git@github.com:ElielSilva/project-zoo-functions.git
+```
+
+### baixar via https
+execute esse comando no seu terminal:
+```
+$ git clone https://github.com/ElielSilva/project-zoo-functions.git
+```
+
+## Instalação
+requer uma versão do node [Node.js](https://nodejs.org/) v6.9.0 ou superior
+
+Entre na pasta do projeto
+```bash
+cd project-zoo-functions
+```
+
+Instale as dependências e devDependencies 
+```bash
+$ npm i
+```
+
+está pronto pra rodar!
+
+# Project Zoo Functions
+
+## download to your machine
+
+### download through SSH
+run this command in your terminal:
+```sh
+$ git clone git@github.com:ElielSilva/project-zoo-functions.git
+```
+
+### download through HTTPS
+run this command in your terminal:
+```
+$ git clone https://github.com/ElielSilva/project-zoo-functions.git
+```
+
+## Installation
+
+Dillinger requires [Node.js](https://nodejs.org/) v18+ to run.
+
+Enter the project folder
+```bash
+cd project-zoo-functions
+```
+
+Install the dependencies and devDependencies and start the server.
+```sh
+npm i
+```
+
+okay!!!
